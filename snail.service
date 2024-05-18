@@ -1,0 +1,18 @@
+[Unit]
+Description=Capture Images of Snail
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/dataeffects/snail/pi30sphotos.py
+Restart=always
+RestartSec=10
+StandardInput=tty-force
+StandardOutput=tty
+
+WorkingDirectory=/home/dataeffects/snail
+User=dataeffects
+
+[Install]
+WantedBy=multi-user.target
+
