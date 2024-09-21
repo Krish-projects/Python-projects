@@ -1,5 +1,5 @@
 [Unit]
-Description=Capture Images of Snail
+Description=Capture Images
 After=multi-user.target
 
 [Service]
