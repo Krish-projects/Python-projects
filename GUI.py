@@ -25,21 +25,21 @@ class MyApp(QWidget):
        
 
     def initUI(self):
-        self.setWindowTitle("Snail Live Camera")
+        self.setWindowTitle("Live Camera")
         self.showMaximized()
         self.setWindowFlags(Qt.WindowCloseButtonHint)
         
        
         self.start_button = QPushButton("Start Preview")
-        self.start_button.setIcon(QIcon('/home/dataeffects/snail/files/icons/start.png'))
+        self.start_button.setIcon(QIcon('/home/files/icons/start.png'))
         self.start_button.clicked.connect(self.start_video)
         self.start_button.setIconSize(1*(QSize(37,37)))
         self.start_button.setStyleSheet("background-color:white;color:black; font: bold 20px Courier;")
         
-        self.pixmap = QPixmap('/home/dataeffects/snail/files/icons/no-video.png')
+        self.pixmap = QPixmap('/home/files/icons/no-video.png')
         
         self.stop_button = QPushButton("Stop Preview")
-        self.stop_button.setIcon(QIcon('/home/dataeffects/snail/files/icons/stop1.png'))
+        self.stop_button.setIcon(QIcon('/home/files/icons/stop1.png'))
         self.stop_button.setIconSize(1*(QSize(30,30)))
         self.stop_button.clicked.connect(self.stop_video)
         self.stop_button.setEnabled(True)
@@ -88,12 +88,12 @@ class MyApp(QWidget):
         
         
     def start_video(self):
-        os.system("sudo systemctl stop snail_capture.service")
+        os.system("sudo systemctl stop capture.service")
        
         self.video_paused = not self.video_paused
         if (self.start_button.text() == "Start Preview"):
             self.start_button.setText("Pause")
-            self.start_button.setIcon(QIcon("/home/dataeffects/snail/files/icons/pause.png"))
+            self.start_button.setIcon(QIcon("/home/files/icons/pause.png"))
             x=self.video_label.geometry().x()
    
             
@@ -106,21 +106,21 @@ class MyApp(QWidget):
             
         else:
             self.start_button.setText("Start Preview")
-            self.start_button.setIcon(QIcon("/home/dataeffects/snail/files/icons/start.png"))
+            self.start_button.setIcon(QIcon("/home/files/icons/start.png"))
             self.camera.stop_preview()
             
 
  
     def stop_video(self):
         self.camera.stop_preview()
-        os.system("sudo systemctl start snail_capture.service")
+        os.system("sudo systemctl start capture.service")
         self.close()
         sys.exit(1)
         
     def closeEvent(self,event):
         self.camera.stop_preview()
         print("inside signal_exit")
-        os.system("sudo systemctl start snail_capture.service")
+        os.system("sudo systemctl start capture.service")
         self.close()
         sys.exit(1)
         
