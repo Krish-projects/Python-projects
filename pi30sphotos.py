@@ -6,7 +6,7 @@ import time
 import keyboard
 import datetime as DT
 
-connection=sqlite3.connect("Snailphotos.db")
+connection=sqlite3.connect("Photos.db")
 connection.execute("CREATE TABLE IF NOT EXISTS piphoto(filename TEXT,path TEXT,status INTEGER);")
 status =0 
 camera=PiCamera()
